@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "funtaxfinder"
+version = "0.1.0"
+description = "Screen functional microbial ASVs from PICRUSt2 KO predictions"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "YOUR NAME"}
+]
+keywords = [
+    "microbiome",
+    "PICRUSt2",
+    "KEGG Orthology",
+    "ASV",
+    "functional microbes",
+    "FAPROTAX"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+dependencies = [
+    "pandas>=1.5"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7"
+]
+
+[project.scripts]
+funtaxfinder = "funtaxfinder.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Zhoufengwu/funtaxfinder"
+Repository = "https://github.com/Zhoufengwu/funtaxfinder"
+Issues = "https://github.com/Zhoufengwu/funtaxfinder/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
