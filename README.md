@@ -33,9 +33,36 @@ tool, because that file is usually KO-by-sample rather than ASV-by-KO.
 
 ## Installation
 
-For local development:
+### Install from Bioconda
+
+FunTaxFinder is available from the Bioconda channel:
 
 ```bash
+mamba create -n funtaxfinder -c conda-forge -c bioconda funtaxfinder
+conda activate funtaxfinder
+```
+
+or, if you already have a suitable environment:
+
+```bash
+mamba install -c conda-forge -c bioconda funtaxfinder
+```
+
+### Install from source
+
+To install the latest source version from GitHub:
+
+```bash
+mamba create -n funtaxfinder-src -c conda-forge -c bioconda python=3.10 pandas
+conda activate funtaxfinder-src
+python -m pip install git+https://github.com/Zhoufengwu/FunTaxFinder.git
+```
+
+For local development from a cloned repository:
+
+```bash
+git clone https://github.com/Zhoufengwu/FunTaxFinder.git
+cd FunTaxFinder
 python -m pip install -e .
 ```
 
@@ -45,6 +72,30 @@ After installation:
 funtaxfinder --help
 funtaxfinder --version
 ```
+
+## External software dependencies
+
+The core KO-based screening workflow only requires Python and `pandas` when an
+existing ASV-by-KO prediction table is supplied through `--ko-predicted` or
+`--picrust2-dir`.
+
+For full functionality, install and configure two external tools separately:
+
+| Software | Required for | Notes |
+| --- | --- | --- |
+| PICRUSt2 | Automatic KO prediction when no existing KO prediction table is supplied | The command `picrust2_pipeline.py` must be available in `PATH`, or supplied with `--picrust2-cmd`. |
+| FAPROTAX | Optional taxonomy-based cross-validation | Provide paths to `collapse_table.py` and the FAPROTAX database with `--faprotax-script` and `--faprotax-db`. |
+
+For a full source-based environment including PICRUSt2:
+
+```bash
+mamba create -n funtaxfinder-full -c conda-forge -c bioconda python=3.10 pandas picrust2
+conda activate funtaxfinder-full
+python -m pip install git+https://github.com/Zhoufengwu/FunTaxFinder.git
+```
+
+FAPROTAX is not bundled with FunTaxFinder. Install or download FAPROTAX
+separately before using `--cross-validate-faprotax`.
 
 ## Minimal example
 
@@ -144,7 +195,6 @@ funtaxfinder \
   --faprotax-db /path/to/FAPROTAX.txt \
   --outdir output
 ```
-
 
 ## License
 
