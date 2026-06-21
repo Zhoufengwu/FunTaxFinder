@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use FunTaxFinder, please cite this software."
-title: "FunTaxFinder: screening functional microbial ASVs from PICRUSt2 KO predictions"
+title: "FunTaxFinder: screening functional microbial ASVs from PICRUSt2-like KO predictions"
 version: "0.1.0"
 date-released: "2026-06-20"
 authors:
-  - family-names: "ZhouE"
+  - family-names: "Zhou"
     given-names: "Fengwu"
 license: "MIT"
-repository-code: "https://github.com/YOUR_GITHUB_USERNAME/funtaxfinder"
+repository-code: "https://github.com/Zhoufengwu/funtaxfinder"
